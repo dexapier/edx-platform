@@ -338,6 +338,20 @@ class LocMapperStore(object):
         self.location_map.update(location_id, {'$set': {'block_map': block_map}})
         return block_id
 
+    def _remove_from_block_map(self, location, location_id, block_map):
+        """
+        Remove the given location from the block_map and persist it
+        """
+        encoded_location_name = self.encode_key_for_mongo(location.name)
+        if encoded_location_name in block_map.keys():
+            map_entry = block_map[encoded_location_name]
+            if location.category in map_entry:
+                if len(map_entry) == 1:
+                    del block_map[encoded_location_name]
+                else:
+                    del map_entry[location.category]
+                self.location_map.update(location_id, {'$set': {'block_map': block_map}})
+
     def _interpret_location_course_id(self, course_id, location, lower_only=False):
         """
         Take the old style course id (org/course/run) and return a dict w/ a SON for querying the mapping table.
@@ -531,3 +545,25 @@ class LocMapperStore(object):
         delete_keys.append(u'{}+{}'.format(old_course_id, location.url()))
         delete_keys.append(old_course_id)
         self.cache.delete_many(delete_keys)
+
+    def delete_item_mapping(self, locator, location):
+        """
+        Delete item from loc_mapper and cache
+
+        :param locator: a BlockUsageLocator
+        :param location: a Location pointing to a module
+        """
+        course_location = self.translate_locator_to_location(locator, get_course=True)
+        location_id = self._interpret_location_course_id(course_location.course_id, location)
+        maps = self.location_map.find(location_id)
+        maps = list(maps)
+        if len(maps) == 1:
+            self._remove_from_block_map(location, location_id, maps[0]['block_map'])
+        elif len(maps) > 1:
+            # find entry w/o name, if any; otherwise, pick arbitrary
+            entry = maps[0]
+            for item in maps:
+                if 'name' not in item['_id']:
+                    entry = item
+                    break
+            self._remove_from_block_map(location, location_id, entry['block_map'])
