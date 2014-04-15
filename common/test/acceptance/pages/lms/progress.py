@@ -1,7 +1,6 @@
 """
 Student progress page
 """
-
 from .course_page import CoursePage
 
 
@@ -12,12 +11,14 @@ class ProgressPage(CoursePage):
 
     url_path = "progress"
 
-    #@property
     def is_browser_on_page(self):
-        has_course_info = self.q(css='div.course-info').present
-        has_graph = self.q(css='div#grade-detail-graph').present
-        return has_course_info and has_graph
+        is_present = (
+            self.q(css='div.course-info').present and
+            self.q(css='div#grade-detail-graph').present
+        )
+        return is_present
 
+    @property
     def scores(self, chapter, section):
         """
         Return a list of (points, max_points) tuples representing the scores
