@@ -41,7 +41,8 @@ have registered and activated user accounts can enroll themselves in
 For a more detailed description of this process from a student's point of
 view, see :ref:`Sample Student Login Guide`.
 
-Course authors and instructors, however, can enroll students in a course either before or after the students register their user accounts.
+Course authors and instructors, however, can enroll students in a course either
+before or after the students register their user accounts.
 
 To work on a course, all course staff members must also have registered and
 activated user accounts and be enrolled in the course.
@@ -63,18 +64,20 @@ When you enroll people in a course you have these options:
   not need to complete an explicit course enrollment step. Of the list of
   email addresses that you supply, those that correspond to a registered user
   account are immediately enrolled in the course. Email addresses on the list
-  that do not match a registered user account are enrolled as soon as the
+  that do not match a registered user account are enrolled as soon as that
   account is registered and activated.
 
-* **Notify students by email**. When you choose this option, an email message
-  is automatically sent to each of the email addresses that you supply. The
-  message includes the name of the course and a reminder to use that same email address to register. Whether you choose to send a notification or not, enrolled students see your course on their dashboards when they log in.
+* **Notify students by email**. When you choose this option, an email message is
+  automatically sent to each of the email addresses that you supply. The message
+  includes the name of the course and a reminder to use that same email address
+  to register. Whether you choose to send a notification or not, enrolled
+  students see your course on their dashboards when they log in.
 
   An example of the email message that enrollees receive when you select this
   option follows.
 
   .. image:: ../Images/Course_Enrollment_Email.png
-        :alt: Email message inviting a student to enroll in the EdX 101 course
+        :alt: Email message inviting a student to enroll in an edx.org course
 
 To enroll students or staff members:
 
@@ -91,10 +94,10 @@ To enroll students or staff members:
   note that this feature is better suited to courses with smaller enrollments,
   rather than courses with massive enrollments.
 
-5. Optionally, select **Auto Enroll** to streamline the course enrollment
-   process for the students.
+5. To streamline the course enrollment process, leave **Auto Enroll** selected.
 
-#. Optionally, select **Notify students by email** to send students email. 
+#. To send students an email message, leave **Notify students by email**
+   selected.
 
 #. Click **Enroll**.
 
@@ -159,4 +162,7 @@ To unenroll students, you supply the email addresses of enrolled students.
 #. Click **Unenroll**. The course is no longer listed on the students'
    dashboards, and the students can no longer contribute to discussions or the
    wiki or access the courseware.
+
+.. note:: The **Auto Enroll** and **Notify students by email** options have
+   no effect when you click Unenroll.
 

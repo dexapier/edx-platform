@@ -9,10 +9,13 @@ Change Log
    :header-rows: 1
 
    * - Date
-     - Change  
-   * - 4/11/14
-     - Expanded the :ref:`Grades` section to include a topic on interpreting the Student Answer Distribution report. 
-   * - 4/7/14
+     - Change
+     - 04/18/14
+     - Updated the :ref:`Enrollment` section to reflect feature changes.
+   * - 04/11/14
+     - Expanded the :ref:`Grades` section to include a topic on interpreting the
+       Student Answer Distribution report.
+   * - 04/07/14
      - Expanded the :ref:`Course Data`, :ref:`Enrollment`, and :ref:`Course_Staffing` sections.
    * - 04/03/14
      - Updated the :ref:`Adding Pages to a Course` chapter to reflect ability to
@@ -33,10 +36,10 @@ Change Log
    * - 03/27/14
      - Updated the :ref:`Adding Pages to a Course` section to reflect feature
        changes.
-   * - 3/27/14
+   * - 03/27/14
      - Updated the section on :ref:`Beta_Testing` to include the new "batch add"
        feature.
-   * - 3/19/14
+   * - 03/19/14
      - Updated the sections on :ref:`Beta_Testing`, :ref:`Discussions`,
        :ref:`Grades`, and :ref:`Student Data` with changes to the new Instructor
        Dashboard.
