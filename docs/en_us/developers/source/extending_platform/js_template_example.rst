@@ -6,22 +6,26 @@ The Custom JavaScript Display and Grading Example Template
 
 As referred to in `course staff documentation <http://edx.readthedocs.org/projects/ca/en/latest/problems_tools/advanced_problems.html#custom-javascript-display-and-grading>`_, there is a built-in template in edX Studio that uses a sample JavaScript application.
 
-This sample application has students select two different shapes, a cone
-and a cube. The correct state is when the cone is selected and the cube is not selected:
+This sample application has students select two different shapes, a cone and a
+cube. The correct state is when the cone is selected and the cube is not
+selected:
 
 .. image:: ../images/JavaScriptInputExample.png
   :alt: Image of the sample JavaScript application, with the cone selected 
 
-You can `download files for that application <http://files.edx.org/JSInput.zip>`_. You must upload these files in Studio to use them in a problem.
+You can `download files for that application <http://files.edx.org/JSInput.zip>`_. 
+You must upload these files in Studio to use them in a problem.
 
-The following information steps through this example to demonstrate how to apply the guidelines in `Custom JavaScript Display and Grading`.
+The following information steps through this example to demonstrate how to apply
+the guidelines in `Custom JavaScript Display and Grading`.
 
 
-**********************
-getState() Function
-**********************
+****************************
+Example getState() Function
+****************************
 
-In the example, the ``state`` variable is initialized for the cylinder and cube in the ``WebGLDemo.js`` file:
+In the example, the ``state`` variable is initialized for the cylinder and cube
+in the ``WebGLDemo.js`` file:
 
 .. code-block:: javascript
 
@@ -32,9 +36,11 @@ In the example, the ``state`` variable is initialized for the cylinder and cube 
                 }
     }
 
-User interactions toggle the ``state`` values of the cylinder and cube between ``true`` and ``false``.
+User interactions toggle the ``state`` values of the cylinder and cube between
+``true`` and ``false``.
 
-The ``getState()`` function in the sample application returns the state as a JSON string:
+The ``getState()`` function in the sample application returns the state as a
+JSON string:
 
 .. code-block:: javascript
 
@@ -43,11 +49,13 @@ The ``getState()`` function in the sample application returns the state as a JSO
      }
 
 
-**********************
-setState() Function
-**********************
+******************************
+Example setState() Function
+******************************
 
-In the example, when a student clicks **Check**, the ``state`` variable is saved so that the student can later return to the application and find it in the same state:
+In the example, when a student clicks **Check**, the ``state`` variable is saved
+so that the student can later return to the application and find it in the same
+state:
 
 .. code-block:: javascript
 
@@ -57,7 +65,8 @@ In the example, when a student clicks **Check**, the ``state`` variable is saved
         updateMaterials();
     }
 
-The ``updateMaterials()`` function called by ``setState()`` updates the state of the cylinder and cone with the user's current selections:
+The ``updateMaterials()`` function called by ``setState()`` updates the state of
+the cylinder and cone with the user's current selections:
 
 .. code-block:: javascript
 
@@ -77,11 +86,12 @@ The ``updateMaterials()`` function called by ``setState()`` updates the state of
         }
     }
 
-**********************
-getGrade() function
-**********************
+******************************
+Example getGrade() function
+******************************
 
-In the example, when a student clicks **Check**, the ``getGrade()`` function in returns the selected objects:
+In the example, when a student clicks **Check**, the ``getGrade()`` function in
+returns the selected objects:
 
 .. code-block:: javascript
 
@@ -89,7 +99,8 @@ In the example, when a student clicks **Check**, the ``getGrade()`` function in 
         return JSON.stringify(state['selectedObjects']);
     }
 
-The returned JSON string is then used by the Python code defined in the problem to determine if correct objects were selected or not, and to return a result.
+The returned JSON string is then used by the Python code defined in the problem
+to determine if correct objects were selected or not, and to return a result.
 
 *******************************
 Grade the Student Response
@@ -120,11 +131,19 @@ The following is the Python function ``vglcfn`` in the sample application:
         '''
     </script>
 
-The ``ans`` parameter contains the JSON string returned by ``getGrade()``. The value is converted to a Python Unicode structure in the variable ``par``.
+The ``ans`` parameter contains the JSON string returned by ``getGrade()``. The
+value is converted to a Python Unicode structure in the variable ``par``.
 
-In the function's first option, object(s) the student selected are stored in the ``answer`` variable.  If the student selected the cylinder and not the cube, the ``answer`` variable contains only ``cylinder``, and the function returns ``True``, which signifies a correct answer.  Otherwise, it returns ``False`` and the answer is incorrect.
+In the function's first option, object(s) the student selected are stored in the
+``answer`` variable.  If the student selected the cylinder and not the cube, the
+``answer`` variable contains only ``cylinder``, and the function returns
+``True``, which signifies a correct answer.  Otherwise, it returns ``False`` and
+the answer is incorrect.
 
-In the function's second option, the objects' states are retrieved.  If the cylinder is selected and not the cube, the function returns ``True``, which signifies a correct answer.  Otherwise, it returns ``False`` and the answer is incorrect.
+In the function's second option, the objects' states are retrieved.  If the
+cylinder is selected and not the cube, the function returns ``True``, which
+signifies a correct answer.  Otherwise, it returns ``False`` and the answer is
+incorrect.
 
 
 *******************************
@@ -174,5 +193,3 @@ The XML problem for the sample template is:
             sop="false"/>
         </customresponse>
     </problem>
-
-
