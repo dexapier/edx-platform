@@ -13,19 +13,6 @@ def upload_handout(step, filename):
     success_upload_file(filename)
 
 
-@step('I can download handout file( in editor)?$')
-def i_can_download_handout(_step, is_editor):
-    if is_editor:
-        selector = '.wrapper-comp-setting.file-uploader .download-action'
-    else:
-        selector = '.video-handout.video-download-button a'
-
-    button = world.css_find(selector).first
-    url = button['href']
-    request = RequestHandlerWithSessionId()
-    assert_true(request.get(url).is_success())
-
-
 @step('I can download handout file( in editor)? with mime type "([^"]*)"$')
 def i_can_download_handout_with_mime_type(_step, is_editor, mime_type):
     if is_editor:
@@ -41,5 +28,13 @@ def i_can_download_handout_with_mime_type(_step, is_editor, mime_type):
 
 
 @step('I clear handout$')
-def clear_heandout(_step):
+def clear_handout(_step):
     world.css_click('.wrapper-comp-setting.file-uploader .setting-clear')
+
+
+@step('I have created a Video component with handout file "([^"]*)"')
+def create_video_with_handout(_step, filename):
+    _step.given('I have created a Video component')
+    _step.given('I edit the component')
+    _step.given('I open tab "Advanced"')
+    _step.given('I upload handout file "{0}"'.format(filename))

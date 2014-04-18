@@ -490,6 +490,12 @@ function(BaseView, _, MetadataModel, AbstractEditor, FileUpload, UploadDialog, V
         }
     });
 
+
+    /**
+     * Provides convenient way to upload/download files in component edit.
+     * The editor uploads files directly to course assets and stores link
+     * to uploaded file.
+     */
     Metadata.FileUploader = AbstractEditor.extend({
 
         events : {
